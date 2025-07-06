@@ -94,7 +94,7 @@
   const embedLinks = [
       { title: "erotic_body_massage_with_oil", src: "https://www.xnxx.tv/embedframe/kvivmch600c" }]
     const container = document.getElementById('videoContainer');
-    videoLinks.forEach(src => {
+    embedLinks.forEach(item => {
       const box = document.createElement('div'); box.className = 'video-box';
       const video = document.createElement('video'); video.src = src; video.controls = true; video.setAttribute('playsinline',''); box.appendChild(video);
       const skip = document.createElement('div'); skip.className = 'skip-ind'; box.appendChild(skip);

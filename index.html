@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>xnx2 — Sexy Video Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: radial-gradient(circle at top, #3f004f, #1a001f);
+      color: #f0f0f0;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 30px;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      color: #ff66cc;
+    }
+    .video-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      width: 100%;
+      max-width: 1200px;
+    }
+    .video-box {
+      position: relative;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+      transition: transform 0.4s, border-color 0.4s;
+    }
+    .video-box:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: #ff66cc;
+    }
+    video {
+      width: 100%;
+      display: block;
+      background: #000;
+    }
+    .info {
+      padding: 20px;
+      text-align: center;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(5px);
+    }
+    .info h2 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: #ffe6f2;
+    }
+    .info p {
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+    .skip-ind {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 102, 204, 0.8);
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 1.4rem;
+      color: #fff;
+      display: none;
+      pointer-events: none;
+      text-shadow: 0 0 8px rgba(0,0,0,0.5);
+    }
+    .play-overlay {
+      display: none;
+    }
+    @media(max-width: 500px) {
+      h1 { font-size: 2.2rem; }
+      .info h2 { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <h1>xnx2</h1>
+  <div class="video-container" id="videoContainer"></div>
+
+  <script>
+    const videoLinks = [
+      "https://example.com/video1.mp4",
+      "https://example.com/video2.mp4"
+    ];
+    const container = document.getElementById('videoContainer');
+    videoLinks.forEach(src => {
+      const box = document.createElement('div'); box.className = 'video-box';
+      const video = document.createElement('video'); video.src = src; video.controls = true; video.setAttribute('playsinline',''); box.appendChild(video);
+      const skip = document.createElement('div'); skip.className = 'skip-ind'; box.appendChild(skip);
+      const info = document.createElement('div'); info.className = 'info';
+      const name = decodeURIComponent(src.split('/').pop().split('?')[0]);
+      info.innerHTML = `<h2>${name.replace(/\.\w+$/, '')}</h2><p>Loading...</p>`;
+      box.appendChild(info);
+      container.appendChild(box);
+      video.addEventListener('loadedmetadata', ()=>{
+        const d = Math.floor(video.duration), mm = String(Math.floor(d/60)).padStart(2,'0'), ss = String(d%60).padStart(2,'0');
+        info.querySelector('p').textContent = `Duration: ${mm}:${ss}`;
+      });
+      let lastTap = 0;
+      box.addEventListener('click', e => {
+        const now = Date.now(), diff = now - lastTap;
+        if(diff < 300 && diff > 0) {
+          const w = box.getBoundingClientRect().width;
+          if(e.clientX - box.getBoundingClientRect().left < w/2) {
+            video.currentTime = Math.max(0, video.currentTime - 10);
+            skip.textContent = '⏪ 10s';
+          } else {
+            video.currentTime = Math.min(video.duration, video.currentTime + 10);
+            skip.textContent = '10s ⏩';
+          }
+          skip.style.display = 'block'; setTimeout(()=> skip.style.display = 'none', 800);
+        }
+        lastTap = now;
+      });
+    });
+  </script>
+</body>
+</html>

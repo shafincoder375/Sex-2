@@ -17,8 +17,28 @@
     .results { text-align: center; }
     .animate { animation: fadeInScale 1s ease forwards; }
     @keyframes fadeInScale { from { opacity:0; transform:scale(0.7);} to { opacity:1; transform:scale(1);} }
-    #certificate { margin-top: 2rem; border: 2px solid #0066cc; padding: 1.5rem; border-radius: 8px; background: #fff; }
-    #certificate h3 { margin-bottom:1rem; }
+    /* Certificate styling */
+    #certificate {
+      margin-top: 2rem;
+      padding: 2rem;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f0f8ff 0%, #e6f2ff 100%);
+      box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+      border: 2px solid #004d99;
+    }
+    #certificate h3 {
+      margin-bottom: 1rem;
+      color: #004d99;
+      font-size: 1.5rem;
+      border-bottom: 2px solid #0099ff;
+      display: inline-block;
+      padding-bottom: 0.5rem;
+    }
+    #certificate p {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+      color: #333;
+    }
   </style>
 </head>
 <body>

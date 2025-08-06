@@ -1,129 +1,224 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>xnx2 — Sexy Video Gallery</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice IELTS Testing</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: radial-gradient(circle at top, #3f004f, #1a001f);
-      color: #f0f0f0;
-      font-family: 'Poppins', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 30px;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-      color: #ff66cc;
-    }
-    .video-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 40px;
-      width: 100%;
-      max-width: 1200px;
-    }
-    .video-box {
-      position: relative;
-      background: rgba(255,255,255,0.05);
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
-      transition: transform 0.4s, border-color 0.4s;
-    }
-    .video-box:hover {
-      transform: translateY(-10px) scale(1.02);
-      border-color: #ff66cc;
-    }
-    video {
-      width: 100%;
-      display: block;
-      background: #000;
-    }
-    .info {
-      padding: 20px;
-      text-align: center;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(5px);
-    }
-    .info h2 {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-      color: #ffe6f2;
-    }
-    .info p {
-      font-size: 0.95rem;
-      opacity: 0.85;
-    }
-    .skip-ind {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(255, 102, 204, 0.8);
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-size: 1.4rem;
-      color: #fff;
-      display: none;
-      pointer-events: none;
-      text-shadow: 0 0 8px rgba(0,0,0,0.5);
-    }
-    .play-overlay {
-      display: none;
-    }
-    @media(max-width: 500px) {
-      h1 { font-size: 2.2rem; }
-      .info h2 { font-size: 1.1rem; }
-    }
+    /* Base styling */
+    body { font-family: 'Open Sans', sans-serif; background: #eef2f7; color: #333; margin:0; padding:0; }
+    .container { max-width: 700px; margin: 2rem auto; background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+    h1, h2, h3 { text-align: center; margin-bottom: 1rem; }
+    label { display: block; margin: 1rem 0 0.5rem; font-weight: 600; }
+    input, select { width: 100%; padding: 0.6rem; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }
+    button { display: inline-block; margin-top: 1.5rem; padding: 0.8rem 1.2rem; background: #0066cc; color: #fff; border:none; border-radius: 8px; font-size:1rem; cursor: pointer; }
+    button:disabled { background: #999; cursor: not-allowed; }
+    .hidden { display: none !important; }
+    .question-card { margin: 1.5rem 0; padding: 1rem; background: #f5fbff; border-left: 4px solid #0099ff; border-radius: 6px; }
+    .results { text-align: center; }
+    .animate { animation: fadeInScale 1s ease forwards; }
+    @keyframes fadeInScale { from { opacity:0; transform:scale(0.7);} to { opacity:1; transform:scale(1);} }
+    #certificate { margin-top: 2rem; border: 2px solid #0066cc; padding: 1.5rem; border-radius: 8px; background: #fff; }
+    #certificate h3 { margin-bottom:1rem; }
   </style>
 </head>
 <body>
-  <h1>xnx2</h1>
-  <div class="video-container" id="videoContainer"></div>
- <script>
-  const embedLinks = [
-      { title: "erotic_body_massage_with_oil", src: "https://www.xnxx.tv/embedframe/kvivmch600c" }];
-    const container = document.getElementById('videoContainer');
-    embedLinks.forEach(item => {
-      const box = document.createElement('div'); box.className = 'video-box';
-      const video = document.createElement('video'); video.src = src; video.controls = true; video.setAttribute('playsinline',''); box.appendChild(video);
-      const skip = document.createElement('div'); skip.className = 'skip-ind'; box.appendChild(skip);
-      const info = document.createElement('div'); info.className = 'info';
-      const name = decodeURIComponent(src.split('/').pop().split('?')[0]);
-      info.innerHTML = `<h2>${name.replace(/\.\w+$/, '')}</h2><p>Loading...</p>`;
-      box.appendChild(info);
-      container.appendChild(box);
-      video.addEventListener('loadedmetadata', ()=>{
-        const d = Math.floor(video.duration), mm = String(Math.floor(d/60)).padStart(2,'0'), ss = String(d%60).padStart(2,'0');
-        info.querySelector('p').textContent = `Duration: ${mm}:${ss}`;
-      });
-      let lastTap = 0;
-      box.addEventListener('click', e => {
-        const now = Date.now(), diff = now - lastTap;
-        if(diff < 300 && diff > 0) {
-          const w = box.getBoundingClientRect().width;
-          if(e.clientX - box.getBoundingClientRect().left < w/2) {
-            video.currentTime = Math.max(0, video.currentTime - 10);
-            skip.textContent = '⏪ 10s';
-          } else {
-            video.currentTime = Math.min(video.duration, video.currentTime + 10);
-            skip.textContent = '10s ⏩';
-          }
-          skip.style.display = 'block'; setTimeout(()=> skip.style.display = 'none', 800);
-        }
-        lastTap = now;
-      });
+  <!-- Form Page -->
+  <div class="container" id="form-page">
+    <h1>Voice IELTS Testing</h1>
+    <form id="infoForm">
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" required>
+      <label for="examDate">Date:</label>
+      <input type="date" id="examDate" required>
+      <label for="institution">Institution Name:</label>
+      <input type="text" id="institution" required>
+      <label for="examinerNo">Examiner Number:</label>
+      <input type="text" id="examinerNo" required>
+      <label for="candidateNo">Candidate Number:</label>
+      <input type="text" id="candidateNo" required>
+      <button type="submit">Start Test</button>
+    </form>
+  </div>  <!-- Test Page -->  <div class="container hidden" id="test-page">
+    <h2 id="pageTitle">Welcome to Voice IELTS Testing</h2>
+    <div id="readyContainer">
+      <p>Are you ready to begin the Speaking Test?</p>
+      <button id="startBtn">Yes, I'm Ready</button>
+    </div>
+    <div id="questionContainer" class="hidden">
+      <div class="question-card">
+        <p id="questionText"></p>
+      </div>
+      <button id="recordBtn">Start Speaking</button>
+      <button id="nextBtn" disabled>Next Question</button>
+    </div>
+  </div>  <!-- Result Page -->  <div class="container hidden" id="result-page">
+    <div class="results animate">
+      <h2>Congratulations!</h2>
+      <p>You have completed the test.</p>
+      <p><strong>Your IELTS Score: <span id="scoreDisplay"></span></strong></p>
+      <p>Eligible Countries:</p>
+      <ul id="countriesList"></ul>
+      <div id="certificate">
+        <h3>Voice IELTS Testing Certificate</h3>
+        <p>Name: <span id="certName"></span></p>
+        <p>Date: <span id="certDate"></span></p>
+        <p>Examiner No: <span id="certExaminer"></span></p>
+        <p>Candidate No: <span id="certCandidate"></span></p>
+        <p>Score: <span id="certScore"></span></p>
+        <button id="downloadBtn">Download PDF</button>
+      </div>
+    </div>
+  </div>  <!-- jsPDF for certificate -->  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>  <script>
+    // Questions array (30 items)
+    const questions = [
+      // Part 1 (10)
+      'What is your full name?', 'Where do you live?', 'Do you work or study?',
+      'What do you do in your free time?', 'What kind of music do you like?',
+      'How often do you go out with friends?', 'What are your hobbies?',
+      'Do you enjoy reading?', 'Tell me about your hometown.', 'Do you like technology?',
+      // Part 2 (10)
+      'Describe a teacher who inspired you.', 'Talk about a trip you enjoyed.',
+      'Describe a book you recently read.', 'Talk about a goal you achieved.',
+      'Describe a time you helped someone.', 'Describe your favorite restaurant.',
+      'Talk about a person you admire.', 'Describe your ideal house.',
+      'Describe a technology you use daily.', 'Describe a memorable celebration.',
+      // Part 3 (10)
+      'Why is education important today?', 'How can people improve communication skills?',
+      'What is the impact of social media?', 'Should education be free for everyone?',
+      'How can technology help students learn better?', 'Study abroad vs. local study: which is better?',
+      'What skills lead to job success?', 'How does culture shape identity?',
+      'Why do people migrate to other countries?', 'What makes a good public speaker?'
+    ];
+
+    // Speech Recognition setup
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+
+    // State
+    let currentIndex = 0;
+    const scores = [];
+
+    // Elements
+    const formPage = document.getElementById('form-page');
+    const testPage = document.getElementById('test-page');
+    const resultPage = document.getElementById('result-page');
+    const infoForm = document.getElementById('infoForm');
+    const startBtn = document.getElementById('startBtn');
+    const recordBtn = document.getElementById('recordBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const questionText = document.getElementById('questionText');
+    const scoreDisplay = document.getElementById('scoreDisplay');
+    const countriesList = document.getElementById('countriesList');
+
+    // Certificate fields
+    const certName = document.getElementById('certName');
+    const certDate = document.getElementById('certDate');
+    const certExaminer = document.getElementById('certExaminer');
+    const certCandidate = document.getElementById('certCandidate');
+    const certScore = document.getElementById('certScore');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    // Initialize form date
+    document.getElementById('examDate').valueAsDate = new Date();
+
+    // Form Submit -> Start Test
+    infoForm.addEventListener('submit', e => {
+      e.preventDefault();
+      formPage.classList.add('hidden');
+      testPage.classList.remove('hidden');
     });
-  </script>
-</body>
-</html>
+
+    // Start Questions
+    startBtn.addEventListener('click', () => {
+      document.getElementById('readyContainer').classList.add('hidden');
+      document.getElementById('questionContainer').classList.remove('hidden');
+      showQuestion();
+    });
+
+    function showQuestion() {
+      questionText.innerText = questions[currentIndex];
+      nextBtn.disabled = true;
+      // speak question
+      const utter = new SpeechSynthesisUtterance(questions[currentIndex]);
+      window.speechSynthesis.speak(utter);
+    }
+
+    // Record Answer
+    recordBtn.addEventListener('click', () => {
+      recordBtn.disabled = true;
+      recognition.start();
+    });
+
+    recognition.addEventListener('result', e => {
+      const transcript = Array.from(e.results)
+        .map(r => r[0].transcript)
+        .join('');
+      // Simple rule-based scoring: count keywords
+      const keywords = questions[currentIndex].split(' ').slice(0,3);
+      let matchCount = 0;
+      keywords.forEach(k => { if(transcript.toLowerCase().includes(k.toLowerCase())) matchCount++; });
+      const fluencyScore = Math.min(9, 3 + matchCount);
+      scores.push(fluencyScore);
+      nextBtn.disabled = false;
+    });
+
+    recognition.addEventListener('end', () => {
+      recordBtn.disabled = false;
+    });
+
+    // Next Question or Finish
+    nextBtn.addEventListener('click', () => {
+      currentIndex++;
+      if (currentIndex < questions.length) {
+        showQuestion();
+      } else {
+        finishTest();
+      }
+    });
+
+    // Finish -> Compute Score & Show Results
+    function finishTest() {
+      testPage.classList.add('hidden');
+      resultPage.classList.remove('hidden');
+      // average score
+      const avg = (scores.reduce((a,b) => a + b, 0) / scores.length).toFixed(1);
+      scoreDisplay.innerText = avg;
+      certScore.innerText = avg;
+      // country mapping
+      const map = [
+        { range: [8.0,9.0], list: ['UK','Canada','Australia','USA','New Zealand'] },
+        { range: [7.0,7.5], list: ['Canada','Australia','Germany','Ireland'] },
+        { range: [6.0,6.5], list: ['Germany','Poland','Netherlands','Hungary'] },
+        { range: [5.0,5.5], list: ['Malaysia','UAE','Turkey'] },
+        { range: [0,4.9], list: ['Basic English programs only'] }
+      ];
+      let countries = [];
+      map.forEach(m => {
+        if(avg >= m.range[0] && avg <= m.range[1]) countries = m.list;
+      });
+      countriesList.innerHTML = countries.map(c => `<li>${c}</li>`).join('');
+      // fill certificate
+      certName.innerText = document.getElementById('fullName').value;
+      certDate.innerText = document.getElementById('examDate').value;
+      certExaminer.innerText = document.getElementById('examinerNo').value;
+      certCandidate.innerText = document.getElementById('candidateNo').value;
+    }
+
+    // Download PDF
+    downloadBtn.addEventListener('click', () => {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.setFontSize(18);
+      doc.text('Voice IELTS Testing Certificate', 20, 20);
+      doc.setFontSize(12);
+      doc.text(`Name: ${document.getElementById('fullName').value}`, 20, 40);
+      doc.text(`Date: ${document.getElementById('examDate').value}`, 20, 50);
+      doc.text(`Examiner No: ${document.getElementById('examinerNo').value}`, 20, 60);
+      doc.text(`Candidate No: ${document.getElementById('candidateNo').value}`, 20, 70);
+      doc.text(`Score: ${scoreDisplay.innerText}`, 20, 80);
+      doc.save('Voice-IELTS-Certificate.pdf');
+    });
+  </script></body>
+      </html>
